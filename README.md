@@ -146,22 +146,22 @@
 
 ## 🎓 Currently Learning & Exploring
 
-- 🤖 **Advanced AI/ML** techniques and applications
-- 🔗 **Blockchain Technology** fundamentals
-- ☁️ **Cloud Computing** (AWS, Azure)
-- 🌐 **Web3 & Decentralized Applications**
-- 🎮 **Game Development** with Unity/Unreal
-
----
-
-## 🌟 What Drives Me
-
-✨ 🌐 **Web Development** - Building modern, responsive web applications
+- 🌐 **Web Development** - Building modern, responsive web applications
 - 🔙 **Backend Development** - Designing scalable server architectures
 - 🤖 **Advanced AI/ML** techniques and applications
 - ☁️ **Cloud Computing** (AWS, Azure)
 - 📡 **IoT & AIoT Integration** - Connecting devices with electronics and mechanical systems
 - ⚙️ **Electronics & Mechanical Engineering** - Hardware integration and automation
+
+---
+
+## 🌟 What Drives Me
+
+✨ **Innovation** - Creating technology that solves real-world problems  
+🔥 **Learning** - Constantly expanding my skill set and knowledge  
+🤝 **Collaboration** - Building amazing things with brilliant minds  
+🎯 **Excellence** - Delivering high-quality, well-architected solutions  
+
 > *"The best code is not the longest; it's the one that makes a difference."*
 
 ---
