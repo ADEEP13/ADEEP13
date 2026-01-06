@@ -27,7 +27,7 @@
 ```
 *Continuous innovation through iterative development: conceive ideas, construct solutions, ship to production, learn & repeat.*
       
-    </td>
+    
   </tr>
 </table>
 
@@ -60,7 +60,7 @@
 
 ---
 
-## �️ What We Are Building Now
+##  What We Are Building Now
 
 <div align="center">
 
@@ -100,7 +100,7 @@
 
 ---
 
-## �🎯 Future Goals - Build Something
+## 🎯 Future Goals - Build Something
 
 <div align="center">
 
