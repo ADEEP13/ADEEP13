@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Landing Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: white;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: white;
+            color: #2c3e50;
+            padding: 0 40px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            margin: 0;
+            flex-shrink: 0;
+            width: 100%;
+            height: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .header-search {
+            display: none;
+        }
+
+        .header-search input {
+            width: 100%;
+            padding: 8px 15px;
+            font-size: 14px;
+            border: 1px solid #e8e8e8;
+            border-radius: 25px;
+            outline: none;
+            background-color: #f5f5f5;
+            transition: all 0.3s ease;
+        }
+
+        .header-search input:focus {
+            background-color: white;
+            border-color: #3498db;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.15);
+        }
+
+        .header-search input::placeholder {
+            color: #999;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .header-nav a:hover {
+            color: #3498db;
+        }
+
+        .header-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #3498db;
+            transition: width 0.3s ease;
+        }
+
+        .header-nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-settings {
+            font-size: 24px;
+            cursor: pointer;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+        }
+
+        .header-settings:hover {
+            color: #3498db;
+            transform: rotate(20deg);
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            gap: 0;
+            padding: 0;
+            margin: 0;
+            background-color: white;
+        }
+
+        .sidebar {
+            flex: 0.25;
+            background: white;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: 1px 0 3px rgba(0,0,0,0.08);
+            border-right: 2px solid #e8e8e8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 0;
+            margin: 0;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar:hover {
+            box-shadow: 2px 0 8px rgba(0,0,0,0.12);
+        }
+
+        .main-content {
+            flex: 0.75;
+            background-color: white;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+        }
+
+        .sidebar-banner {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            border-bottom: 2px solid #e8e8e8;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-banner:hover {
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .banner-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+            margin: 0;
+            padding: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .banner-img:hover {
+            transform: scale(1.02);
+        }
+
+        .sidebar-photo {
+            margin-top: 30px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            border: 3px solid white;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .sidebar-photo:hover {
+            box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+            transform: translateY(-4px);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-photo:hover .profile-img {
+            transform: scale(1.05);
+        }
+
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .content-section {
+            display: none;
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .content-section.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Settings Section */
+        .settings-section {
+            display: flex;
+            gap: 0;
+        }
+
+        .settings-sidebar {
+            width: 200px;
+            background: white;
+            border-right: 1px solid #e8e8e8;
+            padding: 20px 0;
+        }
+
+        .settings-item {
+            padding: 15px 20px;
+            cursor: pointer;
+            color: #2c3e50;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .settings-item:hover {
+            background-color: #f5f7fa;
+            color: #3498db;
+            border-left-color: #3498db;
+        }
+
+        .settings-content {
+            flex: 1;
+            background-color: white;
+            padding: 40px;
+        }
+
+        /* Articles Search Section */
+        .articles-search-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding-top: 40px;
+            padding-left: 10px;
+            min-height: auto;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            background-color: #f9f9f9;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            font-family: Arial, sans-serif;
+        }
+
+        .search-box input:hover {
+            border-color: #bbb;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+
+        .search-box input:focus {
+            background-color: white;
+            border-color: #4285f4;
+            box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
+        }
+
+        .search-box input::placeholder {
+            color: #999;
+            font-family: Arial, sans-serif;
+        }
+
+        .articles-results {
+            margin-top: 50px;
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            padding-left: 0;
+        }
+
+        .article-item {
+            padding: 0;
+            background-color: transparent;
+            border-left: none;
+            border-radius: 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .article-item:hover {
+            background-color: transparent;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .article-author {
+            font-size: 14px;
+            color: #006621;
+            margin-bottom: 8px;
+            font-family: Arial, sans-serif;
+        }
+
+        .article-title {
+            font-size: 20px;
+            font-weight: normal;
+            color: #1a0dab;
+            margin-bottom: 4px;
+            font-family: Arial, sans-serif;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .article-title:hover {
+            color: #681da8;
+        }
+
+        .article-content {
+            font-size: 14px;
+            color: #545454;
+            line-height: 1.6;
+            font-family: Arial, sans-serif;
+        }
+
+        .article-item.title-match {
+            border-left-color: transparent;
+            background-color: transparent;
+        }
+
+        .article-item.content-match {
+            border-left-color: transparent;
+            background-color: transparent;
+        }
+
+        .no-results {
+            text-align: center;
+            color: #999;
+            padding: 40px 20px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+
+        footer {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="sidebar-banner">
+                <img src="../x_b_i.png" alt="banner" class="banner-img">
+            </div>
+            <div class="sidebar-photo">
+                <img src="https://via.placeholder.com/250x250?text=Profile+Photo" alt="profile photo" class="profile-img">
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header>
+                <nav class="header-nav">
+                    <a href="#about" onclick="showSection('about')">About Me</a>
+                    <a href="#projects" onclick="showSection('projects')">My Projects</a>
+                    <a href="#articles" onclick="showSection('articles')">Articles</a>
+                    <a href="#contact" onclick="showSection('contact')">Contact</a>
+                </nav>
+                <div class="header-settings" onclick="showSection('settings')">⚙️</div>
+            </header>
+
+            <div class="content-area">
+                <!-- Default Content -->
+                <div class="content-section active" id="default">
+                    <p>Welcome! Click on a navigation option above.</p>
+                </div>
+
+                <!-- About Section -->
+                <div class="content-section" id="about">
+                    <h2>About Me</h2>
+                    <p>Your about me content goes here.</p>
+                </div>
+
+                <!-- Projects Section -->
+                <div class="content-section" id="projects">
+                    <h2>My Projects</h2>
+                    <p>Your projects content goes here.</p>
+                </div>
+
+                <!-- Articles Section with Search -->
+                <div class="content-section" id="articles">
+                    <div class="articles-search-container">
+                        <div class="search-box">
+                            <input type="text" placeholder="Search articles..." id="searchInput" onkeyup="searchArticles()">
+                        </div>
+                        <div class="articles-results" id="articlesResults"></div>
+                    </div>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="content-section" id="contact">
+                    <h2>Contact</h2>
+                    <p>Your contact information goes here.</p>
+                </div>
+
+                <!-- Settings Section -->
+                <div class="content-section" id="settings">
+                    <div class="settings-section">
+                        <div class="settings-sidebar">
+                            <div class="settings-item" onclick="showSetting('general')">General</div>
+                            <div class="settings-item" onclick="showSetting('privacy')">Privacy</div>
+                            <div class="settings-item" onclick="showSetting('notifications')">Notifications</div>
+                            <div class="settings-item" onclick="showSetting('appearance')">Appearance</div>
+                        </div>
+                        <div class="settings-content">
+                            <h2>Settings</h2>
+                            <p>Select an option from the left sidebar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script>
+            // Sample Articles Data
+            const articles = [
+                { title: "Getting Started with HTML", content: "HTML is the standard markup language for creating web pages. It provides the structure and content of websites." },
+                { title: "CSS for Beginners", content: "CSS is used to style and layout web pages. Learn how to make your website look beautiful." },
+                { title: "JavaScript Fundamentals", content: "JavaScript is a programming language that powers interactive web applications. Master the basics." },
+                { title: "Responsive Web Design", content: "Learn how to create websites that work on all devices and screen sizes." },
+                { title: "Web Development Best Practices", content: "Follow industry standards and best practices to write better code and improve user experience." },
+                { title: "Frontend Frameworks", content: "Explore popular frameworks like React, Vue, and Angular for building modern web applications." },
+                { title: "Backend Development", content: "Server-side programming, databases, and APIs are essential for complete web applications." },
+                { title: "Web Security", content: "Protect your applications from security vulnerabilities and attacks." }
+            ];
+
+            function searchArticles() {
+                const searchInput = document.getElementById('searchInput').value.toLowerCase();
+                const resultsContainer = document.getElementById('articlesResults');
+
+                if (!searchInput) {
+                    resultsContainer.innerHTML = '';
+                    return;
+                }
+
+                // Separate results by title matches and content matches
+                const titleMatches = [];
+                const contentMatches = [];
+
+                articles.forEach((article, index) => {
+                    const titleLower = article.title.toLowerCase();
+                    const contentLower = article.content.toLowerCase();
+
+                    if (titleLower.includes(searchInput)) {
+                        titleMatches.push({ ...article, index });
+                    } else if (contentLower.includes(searchInput)) {
+                        contentMatches.push({ ...article, index });
+                    }
+                });
+
+                // Combine results: titles first, then content
+                const allResults = [...titleMatches, ...contentMatches];
+
+                if (allResults.length === 0) {
+                    resultsContainer.innerHTML = '<div class="no-results">No articles found</div>';
+                    return;
+                }
+
+                // Display results
+                resultsContainer.innerHTML = allResults.map(article => {
+                    const isTitle = titleMatches.some(t => t.index === article.index);
+                    const authors = ["John Smith", "Sarah Johnson", "Mike Davis", "Emily Wilson", "Alex Brown", "Jessica Lee", "David Martinez", "Lisa Anderson"];
+                    const authorName = authors[article.index] || "Author";
+                    return `
+                        <div class="article-item ${isTitle ? 'title-match' : 'content-match'}">
+                            <div class="article-author">By ${authorName}</div>
+                            <div class="article-title">${article.title}</div>
+                            <div class="article-content">${article.content}</div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            function showSection(sectionId) {
+                // Hide all sections
+                const sections = document.querySelectorAll('.content-section');
+                sections.forEach(section => section.classList.remove('active'));
+
+                // Show selected section
+                const selectedSection = document.getElementById(sectionId);
+                if (selectedSection) {
+                    selectedSection.classList.add('active');
+                    document.getElementById('default').classList.remove('active');
+
+                    // Clear search when switching to articles
+                    if (sectionId === 'articles') {
+                        document.getElementById('searchInput').value = '';
+                        document.getElementById('articlesResults').innerHTML = '';
+                    }
+                }
+            }
+
+            function showSetting(settingId) {
+                const settingsContent = document.querySelector('.settings-content');
+                const titles = {
+                    'general': 'General Settings',
+                    'privacy': 'Privacy Settings',
+                    'notifications': 'Notifications Settings',
+                    'appearance': 'Appearance Settings'
+                };
+                settingsContent.innerHTML = '<h2>' + titles[settingId] + '</h2><p>Settings for ' + settingId + ' go here.</p>';
+            }
+        </script>
+    </div>
+</body>
+</html>
